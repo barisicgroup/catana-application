@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Catana webapp</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="./lib/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./lib/css/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="@{style.css}" />
+
+  <!-- WebGPU -->
+  <meta http-equiv="origin-trial" content="Asp9LnE2ymS6oq4uDItZ4kKrf0yb3RjiqyP+qbvX37Lw8l8mf8okS2stuTSbY8PkaK64/dlo2/nG++PddJj0WwoAAABKeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjYzMzQyIiwiZmVhdHVyZSI6IldlYkdQVSIsImV4cGlyeSI6MTY3NTIwOTU5OX0=">
+  <meta http-equiv="origin-trial" content="AvYaX2vzIXbcchuayZ1RSd5zQ9J9XK98hGGgAkFJd023w5C3zADbOpRz0QXumMF1TdQtp+9F2MBL+FdWnrnu+QsAAABjeyJvcmlnaW4iOiJodHRwczovL2NhdGFuYS5haXQuYWMuYXQ6NDQzIiwiZmVhdHVyZSI6IldlYkdQVSIsImV4cGlyeSI6MTY3NTIwOTU5OSwiaXNTdWJkb21haW4iOnRydWV9">
+</head>
+
+<body>
+  <!-- Catana -->
+  <script src="@{catana.js}"></script>
+
+  <!-- UI -->
+  <script src="@{webapp.js}"></script>
+
+  <script>
+    CATANA.cssDirectory = "css/"
+    CATANA.documentationUrl = "build/docs/"
+    //CATANA.examplesListUrl = "ngl_scripts/scriptsList.json"
+    //CATANA.examplesScriptUrl = "ngl_scripts/"
+
+    // Datasources
+    //CATANA.DatasourceRegistry.add("data", new CATANA.StaticDatasource("./data/"))
+    var mdsrv = CATANA.getQuery("mdsrv")
+    if (mdsrv) {
+      var mdsrvDatasource = new CATANA.MdsrvDatasource(mdsrv)
+      CATANA.DatasourceRegistry.add("file", mdsrvDatasource)
+      CATANA.setListingDatasource(mdsrvDatasource)
+      CATANA.setTrajectoryDatasource(mdsrvDatasource)
+    }
+
+    let stage;
+    document.addEventListener("DOMContentLoaded", function () {
+      stage = new CATANA.Stage();
+
+      WEBAPP.init(stage, typeof Rollbar !== 'undefined' ? Rollbar : undefined);
+
+      let load = CATANA.getQuery("load")
+      if (load) stage.loadFile(load, { defaultRepresentation: true });
+
+      let struc = CATANA.getQuery("struc")
+      let traj = CATANA.getQuery("traj")
+      if (struc) {
+        stage.loadFile(struc, {
+          defaultRepresentation: true,
+          ext: "pdb"
+        }).then(function (o) {
+          if (traj && o.length > 0) o[0].addTrajectory(traj)
+        })
+      }
+
+      // Catana extension allowing to show remote structures
+      // and choose specific representations by providing specific URL
+      let strucRcsb = CATANA.getQuery("rcsb");
+      let repres = CATANA.getQuery("repr");
+
+      if (strucRcsb) {
+        stage.loadFile("rcsb://" + strucRcsb, {
+          defaultRepresentation: repres == null
+        }).then(function (o) {
+          if (repres && o.length > 0) {
+            o[0].addRepresentation(repres);
+            o[0].autoView();
+          }
+        });
+      }
+
+      let example = CATANA.getQuery("example");
+
+      if (example) {
+        let ExampleClass = CATANA.ExampleRegistry.get(example);
+
+        if (ExampleClass) {
+          let exInstance = new ExampleClass(stage);
+          exInstance.execute();
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>

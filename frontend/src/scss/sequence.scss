@@ -1,0 +1,63 @@
+@import "common";
+
+.SimpleSequenceEditor {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  & > .SequenceEditor {
+    flex-grow: 1;
+  }
+  & > .Button {
+    flex-grow: 0;
+    margin: auto 0 auto 0;
+  }
+}
+.SequenceEditor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 0.125em 0.25em;
+  cursor: text;
+  min-width: 3em;
+
+  // Color
+  border: 1px solid $color-border;
+  background: $color-background-middle;
+  &.editable {
+    background: $color-background-light;
+    color: $color-foreground-dark;
+    &, & * {
+      color: $color-foreground-dark;
+    }
+  }
+  &, & * {
+    color: $color-foreground-light;
+  }
+
+  & > .SequenceElement {
+    font-family: $font-mono;
+    padding: 0.0675em;
+    &.clickable {
+      cursor: text;
+    }
+    &:hover {
+      //font-weight: bold;
+      //text-decoration: $color-good underline;
+      //border-radius: 50%;
+      //outline: 1px solid #2CABE2;
+      z-index: 100;
+    }
+    &.bad {
+      //text-decoration: $color-bad wavy underline;
+      //text-decoration-thickness: 1px;
+      background: $color-bad;
+    }
+  }
+  &.clickable > .SequenceElement.clickable {
+    cursor: pointer;
+  }
+  & > .Placeholder {
+    caret-color: $color-foreground-dark;
+  }
+}

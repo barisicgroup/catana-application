@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Vectornator (http://vectornator.io/) -->
+
+<svg
+   stroke-miterlimit="10"
+   style="clip-rule:evenodd;fill-rule:nonzero;stroke-linecap:round;stroke-linejoin:round"
+   version="1.1"
+   viewBox="0 0 30 30"
+   xml:space="preserve"
+   id="svg1979"
+   sodipodi:docname="square-lattice.svg"
+   width="30"
+   height="30"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview1981"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false" />
+<defs
+   id="defs1968" />
+<path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="M 7.5,0 C 3.3697137,0 0,3.3697137 0,7.5 0,11.630329 3.369723,15 7.5,15 11.630319,15 15,11.630319 15,7.5 15,3.369723 11.630329,0 7.5,0 Z m 0,2 C 10.549464,2 13,4.4505842 13,7.5 13,10.549473 10.549473,13 7.5,13 4.4505842,13 2,10.549464 2,7.5 2,4.4505935 4.4505935,2 7.5,2 Z"
+   id="path1970" /><path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="M 7.5,15 C 3.369723,15 0,18.369671 0,22.5 0,26.630329 3.369723,30 7.5,30 11.630319,30 15,26.630319 15,22.5 15,18.369681 11.630319,15 7.5,15 Z m 0,2 C 10.549473,17 13,19.450527 13,22.5 13,25.549473 10.549473,28 7.5,28 4.4505842,28 2,25.549464 2,22.5 2,19.450536 4.4505842,17 7.5,17 Z"
+   id="path1972" /><path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="M 22.5,0 C 18.369671,0 15,3.369723 15,7.5 15,11.630319 18.369681,15 22.5,15 26.630319,15 30,11.630319 30,7.5 30,3.369723 26.630329,0 22.5,0 Z m 0,2 C 25.549464,2 28,4.4505842 28,7.5 28,10.549473 25.549473,13 22.5,13 19.450527,13 17,10.549473 17,7.5 17,4.4505842 19.450536,2 22.5,2 Z"
+   id="path1974" /><path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="M 22.5,15 C 18.369681,15 15,18.369681 15,22.5 15,26.630319 18.369681,30 22.5,30 26.630319,30 30,26.630319 30,22.5 30,18.369681 26.630319,15 22.5,15 Z m 0,2 C 25.549473,17 28,19.450527 28,22.5 28,25.549473 25.549473,28 22.5,28 19.450527,28 17,25.549473 17,22.5 17,19.450527 19.450527,17 22.5,17 Z"
+   id="path1976" />
+</svg>

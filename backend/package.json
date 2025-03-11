@@ -1,0 +1,110 @@
+{
+  "name": "catana-backend",
+  "version": "1.2.0",
+  "homepage": "https://github.com/barisicgroup/catana-application",
+  "description": "Backend for the Catana application.",
+  "main": "build/catana.umd.js",
+  "module": "build/catana.esm.js",
+  "types": "build/js/src/catana.d.ts",
+  "scripts": {
+    "build": "npm run build-ts && rollup -c && sorcery -i ../frontend/webapp/dist/js/catana.js",
+    "build-ts": "tsc --project tsconfig.json && cpy --parents \"src/**/*.{vert,frag,glsl,wgsl,pdb}\" build/js/ && cpy \"lib/*.js\" build/js/lib/ && cpy \"package.json\" build/js/ && cpy \"src/polyfills.js\" build/js/src/",
+    "deploy": "gh-pages -m NewVersionDeployed -d webapp",
+    "doc": "typedoc --mode file --readme none --out ../frontend/webapp/docs ./src/",
+    "lint": "npm run lint-src && npm run lint-test",
+    "lint-src": "standard \"src/**/*.js\"",
+    "lint-test": "standard --env mocha \"__tests__/**/*.js\"",
+    "postbuild": "node build-timestamp.js",
+    "prebuild": "npm run lint",
+    "predeploy": "npm run build",
+    "test": "jest --verbose",
+    "watch": "rollup -c -w",
+    "build-wg-tools": "cpy \"src/catana/webgpu/shaders/src/**/*.wgsl\" wg-tools/build/catana/webgpu/shaders/src && tsc --project wg-tools/tsconfig.json && rollup --config wg-tools/rollup.config.js"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.ts$": "ts-jest",
+      "\\.es6\\.js": "babel-jest",
+      "^.+\\.wgsl$": "jest-text-transformer"
+    },
+    "testRegex": "\\.spec\\.ts|kin.*test.ts$",
+    "testURL": "http://localhost"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/barisicgroup/catana-application.git"
+  },
+  "bugs": {
+    "url": "https://github.com/barisicgroup/catana-application/issues"
+  },
+  "author": "MARILIA Team",
+  "contributors": [],
+  "license": "MIT",
+  "keywords": [
+    "molecular graphics",
+    "molecular structure",
+    "chemical structure",
+    "science"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-external-helpers": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/register": "^7.14.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@types/chroma-js": "^2.1.2",
+    "@types/d3": "^7.0.0",
+    "@types/jest": "^23.3.14",
+    "@types/node": "^14.0.0",
+    "@types/promise-polyfill": "^6.0.0",
+    "@types/signals": "1.0.1",
+    "@types/sprintf-js": "^1.1.2",
+    "arkit": "^1.6.4",
+    "babel-plugin-array-includes": "^2.0.3",
+    "babelrc-rollup": "^3.0.0",
+    "chai": "^4.3.0",
+    "cpy-cli": "^3.1.0",
+    "eslint": "^5.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react": "^7.24.0",
+    "jest": "26.0.0",
+    "jest-text-transformer": "^1.0.4",
+    "mocha": "^5.2.0",
+    "rollup": "^2.67.1",
+    "rollup-plugin-internal": "^1.0.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-watch": "^1.0.1",
+    "slimerjs": "^1.0.0",
+    "sorcery": "^0.10.0",
+    "source-map-support": "^0.5.6",
+    "standard": "^11.0.1",
+    "ts-jest": "26.0.0",
+    "typedoc": "^0.18.0",
+    "typescript": "^3.9.10",
+    "uglify-js": "^3.13.9"
+  },
+  "dependencies": {
+    "@types/blueimp-md5": "^2.18.0",
+    "@types/prettier": "^2.4.4",
+    "@webgpu/types": "^0.1.23",
+    "blueimp-md5": "^2.19.0",
+    "chroma-js": "^2.1.2",
+    "d3": "^7.0.0",
+    "express": "^4.18.0",
+    "fast-safe-stringify": "^2.0.7",
+    "gh-pages": "^3.2.3",
+    "jspython-interpreter": "^2.1.12",
+    "promise-polyfill": "^8.2.0",
+    "signals": "^1.0.0",
+    "sprintf-js": "^1.1.2",
+    "three": "^0.118.0",
+    "update": "^0.7.4"
+  }
+}

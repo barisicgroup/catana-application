@@ -1,0 +1,14 @@
+TITLE asn.pdb                                                                   
+MODEL 1                                                                         
+ATOM      1 OXT  ASN A  1       0.700  -1.591   0.896  0.00  0.00           O
+ATOM      2  O   ASN A  1       2.019  -0.917  -0.820  0.00  0.00           O
+ATOM      3 OD1  ASN A  1      -2.145  -0.610  -1.060  0.00  0.00           O
+ATOM      4  N   ASN A  1       1.781   1.683   0.085  0.00  0.00           N
+ATOM      5 ND2  ASN A  1      -2.103   0.156   1.108  0.00  0.00           N
+ATOM      6 CA   ASN A  1       0.699   0.744   0.391  0.00  0.00           C
+ATOM      7 CB   ASN A  1      -0.517   1.067  -0.480  0.00  0.00           C
+ATOM      8  C   ASN A  1       1.227  -0.646   0.074  0.00  0.00           C
+ATOM      9 CG   ASN A  1      -1.660   0.113  -0.193  0.00  0.00           C
+TER      10      ASN A  1                                         
+ENDMDL                                                                          
+END                                                                             

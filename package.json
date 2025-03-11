@@ -1,0 +1,23 @@
+{
+    "name": "catana",
+    "version": "1.2.0",
+    "homepage": "https://github.com/barisicgroup/catana-application",
+    "description": "Complete Catana (Computer-Aided Tool for Assembly of Nanostructures) application project.",
+    "workspaces": [
+        "backend",
+        "frontend"
+    ],
+    "scripts": {
+        "build-develop": "npm run build --workspaces --if-present",
+        "build-release": "cross-env RELEASE=true npm run build --workspaces --if-present",
+        "build-backend": "npm run build --workspace=backend",
+        "build-frontend": "npm run build --workspace=frontend",
+        "build-docs": "npm run doc --workspaces --if-present",
+        "build-css": "npm run build-css --workspace=frontend",
+        "test-all": "npm run test --workspaces --if-present"
+    },
+    "webapp_folder": "frontend/webapp/",
+    "devDependencies": {
+        "cross-env": "^7.0.3"
+    }
+}

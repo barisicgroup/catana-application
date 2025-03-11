@@ -1,0 +1,33 @@
+/*
+ Custom eslint rule to check specifically for imports from backend source code,
+ throwing an error everytime a code is imported from backend files but not via the module (VSCode tends to do this sometimes).
+ Ensures well-defined separation of the codebase.
+*/
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "no-restricted-imports": [
+            "error",
+            {
+                "patterns": [
+                    {
+                        "group": [
+                            "*backend/build/js/src/*"
+                        ],
+                        "message": "Imports from 'catana-backend' should be realized via module (using 'catana-backend' only). Consider exporting from catana.ts file."
+                    }
+                ]
+            }
+        ]
+    }
+    /*"extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+        "plugin:import/errors"
+    ]*/
+}

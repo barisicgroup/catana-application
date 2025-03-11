@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "build/js/src",
+    "checkJs": false,
+    "typeRoots": [],
+    "alwaysStrict": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/ts/*.ts"
+  ]
+}

@@ -1,0 +1,20 @@
+*.sublime-workspace
+
+build/
+node_modules/
+declarations/
+
+webapp/dist
+webapp/index.html
+webapp/docs
+
+npm-debug.log
+package-lock.json
+
+*.offsets
+
+# WebStorm
+.idea
+
+# VS Code
+.vscode

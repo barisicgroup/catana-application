@@ -1,0 +1,802 @@
+// Import other SCSS files ---------------------------------------------------------------------------------------------
+@import "common";
+@import "bars";
+@import "modal";
+@import "component";
+@import "color";
+@import "sequence";
+@import "../../build/scss/catana-icons"; // Catana icons
+
+// Definitions ---------------------------------------------------------------------------------------------------------
+* {
+    font-family: $font-default;
+    background: transparent;
+    color: $color-foreground-light;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: $color-background-dark;
+
+    // Custom scrollbar styles
+    scrollbar-color: #777777 #f2f2f220;
+
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f2f2f220;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #777777;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #999999;
+    }
+}
+
+#logAlertText {
+    //background: $color-background-dark;
+    background: $color-good;
+    color: $color-foreground-dark;
+    padding: 1em;
+    z-index: 10100;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 1;
+    transition: transform 0.5s;
+    box-shadow: $shadow;
+    &.invisible {
+        display: block !important;
+        transform: translate(-50%, -110%); // 10% extra to compensate for shadow
+    }
+    &.ErrorAlertText {
+        background: $color-bad;
+    }
+    &.WarningAlertText {
+        background: $color-warn;
+    }
+}
+
+.Panel {
+    display: flex;
+    padding: 0.5em;
+    background: $color-background-dark;
+    gap: 0.5em;
+    &.Vertical {
+        flex-direction: column;
+        & > .Separator {
+            display: block;
+            height: 1px;
+            width: 100%;
+            margin: 0.25em 0 0.25em 0;
+        }
+    }
+    &.Horizontal {
+        flex-direction: row;
+        & > .Separator {
+            display: inline-block;
+            height: 100%;
+            width: 1px;
+            margin: 0 0.25em 0 0.25em;
+        }
+    }
+    & .Panel {
+        padding: 0;
+    }
+
+    &.CenteredContent {
+        margin: 0 auto;
+    }
+}
+
+.TitledPanel {
+    flex-direction: column;
+    & > .Header {
+        flex-grow: 0;
+        font-size: 0.75em;
+        font-weight: bold;
+        border-bottom: 1px solid $color-border;
+    }
+    & > .Content {
+        flex-grow: 1;
+        margin: 0 1em 0 1em;
+    }
+    & + .TitledPanel {
+        margin-top: 0.5em;
+    }
+}
+
+.Separator {
+    display: none;
+    width: 0;
+    height: 0;
+    background: $color-border;
+}
+
+.Tooltip {
+    position: fixed;
+    z-index: 10000;
+    outline: 1px solid $color-border;
+    & > .Panel {
+        & > .Button {
+            margin: 0;
+            background: transparent;
+        }
+    }
+}
+
+.Text {
+    &.Title {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.5em;
+    }
+    & > .LineBreak {
+        display: block;
+        content: " ";
+    }
+    & > .Paragraph {
+        display: block;
+        margin-top: 1em;
+        content: " ";
+    }
+}
+
+.Href {
+    &:visited {
+        color: $color-foreground-middle;
+    }
+    &:hover {
+        cursor: pointer;
+        color: $color-catana-blue;
+    }
+}
+
+.Button {
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 0.25em;
+    background: $color-background-middle;
+    padding: 0.125em 0.25em;
+    &,
+    & > .Text {
+        text-align: center;
+    }
+    &.IconElement,
+    &.IconElement > .Text {
+        text-align: left;
+    }
+    &.Mini {
+        @include Mini;
+    }
+    &:hover {
+        //border: 1px solid $color-foreground-light);
+        //box-shadow: 0 0 10px black;
+        border: 1px solid $color-border;
+        background: $color-background-dark;
+    }
+    &:active {
+        box-shadow: inset $shadow;
+    }
+}
+
+.Icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    font-size: 1em;
+    user-select: none;
+    &:not(.invisible) + .Text:not(.invisible) {
+        margin-left: 0.5em;
+    }
+}
+
+.IconElement {
+    //display: flex;
+    white-space: nowrap;
+    & > .Text {
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    & > * {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
+
+.Dropdown {
+    display: table;
+    padding: 0;
+    &.Mini {
+        @include Mini;
+        display: flex;
+        & > .Button {
+            padding: 0 0.125em 0 0.25em;
+        }
+    }
+    & > .Button {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        border-radius: 0;
+        &:active {
+            box-shadow: none;
+        }
+    }
+}
+.DropdownPanel {
+    gap: 0;
+    & > .Button {
+        text-align: left;
+        & > .Text {
+            text-align: left;
+        }
+    }
+}
+
+.Select {
+    padding: 0.25em;
+    border: 1px solid $color-border;
+    width: 100%;
+    &:hover {
+        background: $color-background-middle;
+    }
+    &:active {
+        box-shadow: inset $shadow;
+    }
+    & > .Icon {
+        flex-grow: 0;
+        font-size: 0.625em;
+        margin: auto 0.25em auto 0.5em;
+    }
+    &.CustomSelect {
+        display: flex;
+        justify-content: flex-end;
+        &:hover {
+            cursor: default;
+        }
+        & > .CustomSelectSelected {
+            display: flex;
+            flex-grow: 1;
+            & > * {
+                flex-grow: 1;
+            }
+        }
+        & > .CustomSelectIcon {
+            flex-grow: 0;
+        }
+    }
+}
+
+.Select[multiple] {
+    .Option {
+        background: transparent;
+        &:hover {
+            background: $color-background-middle;
+        }
+    }
+}
+
+.Option {
+    background: $color-background-dark;
+    &:hover {
+        background: $color-background-middle;
+    }
+}
+
+.CustomSelectPanel {
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 20em;
+    gap: 0;
+    & > .Option {
+        padding: 0.25em;
+        font-size: 0.75em;
+        margin: 0;
+        user-select: none;
+        &.active {
+            background: $color-background-middle;
+        }
+    }
+}
+
+.TextArea {
+    padding: 0.25em;
+    border: 1px solid $color-border;
+    resize: none;
+    background: $color-background-dark;
+    color: $color-foreground-light;
+    &.Resizable {
+        &.Vertical.Horizontal {
+            resize: both;
+        }
+        &.Vertical {
+            resize: vertical;
+        }
+        &.Horizontal {
+            resize: horizontal;
+        }
+    }
+}
+
+.Input,
+.Number {
+    //background: $color-background-light;
+    //color: $color-foreground-dark;
+    border: 1px solid $color-border;
+    padding: 0.25em;
+    min-width: 0;
+    width: 100%;
+    &.clickable:hover {
+        cursor: text;
+    }
+}
+
+.Checkbox {
+    margin: auto 0 auto 0;
+}
+
+.Color {
+    border: none;
+}
+
+.Radio {
+    margin: auto 0 auto 0;
+}
+.RadioButtonGroupPanel {
+    & > .Text {
+        margin: auto 0 auto 0;
+    }
+}
+
+.Table {
+    display: grid;
+    &.ListTable {
+        & > * {
+            padding: 0.25em;
+            &.TableCell {
+                &:hover {
+                    //background: $color-background-middle;
+                }
+            }
+        }
+    }
+    &.FormTable {
+        gap: 0.5em;
+    }
+    &.ListTable {
+        & > .TableHeader {
+            border-bottom: 1px solid $color-border;
+        }
+        & > .TableCell {
+            box-shadow: inset 0 -1em 1em -1em $color-background-middle;
+        }
+    }
+    & > * {
+        &.TableHeader {
+            margin-top: auto;
+            font-weight: bold;
+            text-align: center;
+        }
+        &.TableCell {
+            //:not(.TableHeader) {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            overflow: hidden;
+
+            & > .Panel {
+                background: transparent;
+            }
+
+            & > .Text {
+                white-space: nowrap;
+                margin: 0 0 auto 0;
+            }
+
+            & .Button,
+            & .Icon {
+                @include Mini;
+                width: 1em;
+            }
+
+            & .Icon {
+                display: inline-grid;
+                align-content: center;
+            }
+        }
+    }
+}
+
+.TabsMenu {
+    display: flex;
+    flex-direction: column;
+    & > .TabsMenuBar {
+        flex-direction: row;
+        gap: 0;
+        flex-grow: 0;
+        flex-shrink: 0;
+        //border-bottom: 1px solid $color-foreground-light);
+        border-bottom: 1px solid $color-border;
+        overflow-x: hidden;
+        &:hover {
+            //flex-wrap: wrap;
+        }
+        & > .Button {
+            display: block;
+            overflow: hidden;
+            padding: 0.25em;
+            background: transparent;
+            border-radius: 0.25em 0.25em 0 0;
+            border-color: transparent transparent transparent $color-border;
+            //overflow-x: hidden;
+            //text-overflow: ellipsis;
+            //min-width: 0;
+            &:hover {
+                //background: $color-background-middle;
+                border-color: $color-border $color-border transparent $color-border;
+            }
+            &.selected {
+                outline: none;
+                background: $color-background-middle;
+                flex-shrink: 0;
+            }
+        }
+    }
+    & > .TabsMenuContent {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+}
+
+.CollapsiblePanel {
+    & > .CollapsiblePanelBar {
+        height: 1.5em;
+        &:hover {
+            background: $color-background-middle;
+        }
+        & > .Button {
+            flex-grow: 0;
+        }
+        & > .CollapseButton {
+            border-radius: 50%;
+            &:hover {
+                border: 1px transparent;
+            }
+        }
+        & > .CollapsiblePanelBarElement {
+            flex-grow: 1;
+            height: 1.5em;
+        }
+        & > .CollapsiblePanelBarButton {
+            & + .CollapsiblePanelBarButton {
+                margin: 0;
+            }
+        }
+    }
+    & > .CollapsibleContent {
+        margin-top: 0.5em;
+        margin-left: 2em;
+    }
+    &.collapsed {
+        & > .CollapsiblePanelBar {
+            & > .CollapseButton:not(:hover) {
+                & > .Icon {
+                    color: $color-foreground-middle;
+                }
+            }
+        }
+    }
+}
+
+.TreeView {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    & > .TreeViewContent {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+
+        & > .TreeViewNode {
+            & + .TreeViewNode {
+                margin-top: 0.25em;
+            }
+            & > .CollapsiblePanelBar {
+                & > .CollapseButton {
+                    width: 1.5em;
+                    max-width: 1.5em;
+                    min-width: 1.5em;
+                }
+            }
+            &.nochildren {
+                & > .CollapsiblePanelBar {
+                    & > .CollapseButton {
+                        visibility: hidden;
+                    }
+                }
+            }
+            &.collapsed {
+                & > .CollapsiblePanelBar {
+                    & > .CollapseButton:not(:hover) {
+                        & > .Icon {
+                            color: $color-foreground-middle;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.DropArea {
+    min-width: 25em;
+    min-height: 12.5em;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    padding: 6.25em 0;
+    border: 0.25em dashed $color-border;
+    &:hover {
+        border: 0.25em dashed $color-catana-blue;
+    }
+    &:active {
+        border: 0.25em dashed $color-foreground-light;
+    }
+    &.active {
+        border: 0.25em dashed $color-foreground-light;
+    }
+    & * {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.List {
+    margin-left: 1em;
+    & > .List {
+        margin-left: 1em;
+    }
+}
+
+.DirectionSelectorCirclePanel {
+    display: flex;
+    flex-direction: row;
+    & > .DirectionSelectorSliderPanel {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0;
+        & > * {
+            flex-grow: 0;
+            margin: 0 auto 0 auto;
+            &.DirectionSelectorSliderContainer {
+                flex-grow: 1;
+                position: relative;
+                width: 100%;
+                & > .Slider {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: rotate(-90deg) translate(-100%, -50%);
+                    transform-origin: 0 0;
+                }
+            }
+        }
+    }
+    & > .DirectionSelectorCircleContainer {
+        flex-grow: 1;
+        height: 10em;
+        width: 10em;
+        position: relative;
+        & > .DirectionSelectorCircle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+// Based on https://loading.io/css/
+.AnimLoader {
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+
+    &::after {
+        content: " ";
+        display: block;
+        width: 102px;
+        height: 102px;
+        margin: 12px;
+        border-radius: 50%;
+        border: 10px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: AnimLoader 2s linear infinite;
+        text-shadow: 2px 2px 2px #000;
+    }
+}
+
+@keyframes AnimLoader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#globalAnimLoader {
+    position: absolute;
+    z-index: 10101;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// CodeJar script editor styles -----------------------------------------------------------------------------------------------
+#scriptEditor {
+    background: #F5F2E5;
+    color: #383A42;
+    font-family: $font-mono;
+    width: 768px;
+    min-height: 256px;
+    max-height: 512px;
+    padding: 8px;
+    tab-size: 4;
+
+    // Font family is necessary in classes below otherwise
+    // it is overriden for some reason.
+
+    .code_string {
+        color: rgb(209, 91, 22);
+        font-family: $font-mono;    
+    }
+
+    .code_comment {
+        color: rgb(62, 139, 43);
+        font-family: $font-mono;
+    }
+
+    .code_keywords {
+        color: rgb(42, 106, 189);
+        font-family: $font-mono;
+    }
+
+    .code_globalobjs {
+        color: rgb(1, 96, 221);
+        font-family: $font-mono;
+    }
+
+    .code_apifuncs {
+        color: rgb(1, 96, 221);
+        font-family: $font-mono;
+    }
+}
+
+.output-log {
+    min-height: 64px;
+}
+
+// Intro JS overrides ---------------------------------------------------------------------------------------------------------
+.introjs-tooltip {
+    background-color: $color-background-middle !important;
+    border-radius: 0px !important;
+
+    > .introjs-tooltip-header {
+        background-color: $color-background-dark !important;
+
+        > .introjs-skipbutton {
+            color: $color-foreground-light !important;
+        }
+
+        > .introjs-skipbutton:hover {
+            color: $color-foreground-middle !important;
+        }
+    }
+}
+
+// Descriptors ---------------------------------------------------------------------------------------------------------
+
+.editable {
+    background: $color-background-light;
+    color: $color-foreground-dark;
+}
+
+.invisible {
+    display: none !important;
+}
+
+.clickable {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.selected {
+    outline: 2px solid $color-catana-blue;
+}
+
+.console {
+    font-family: $font-mono;
+}
+
+.highlighted {
+    //box-shadow: 0 0 0.25em 0.0625em $color-highlight;
+    outline: 0.15em solid $color-highlight;
+}
+
+.disabled {
+    position: relative;
+    pointer-events: none;
+    & > .DisabledOverlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: grid;
+        align-content: center;
+        text-align: center;
+        // Source: https://www.magicpattern.design/tools/css-backgrounds
+        background: repeating-linear-gradient(
+            45deg,
+            change-color($color-foreground-middle, $alpha: 0.5),
+            change-color($color-foreground-middle, $alpha: 0.5) 5px,
+            transparent 5px,
+            transparent 20px
+        );
+    }
+}
+
+@mixin Placeholder {
+    color: $color-foreground-middle;
+    opacity: 0.6;
+    user-select: none;
+    pointer-events: none;
+    font-size: 1em;
+}
+::placeholder {
+    @include Placeholder;
+}
+::-ms-input-placeholder {
+    @include Placeholder;
+}
+.Placeholder {
+    @include Placeholder;
+    font-size: 0.85em;
+    caret-color: $color-foreground-light;
+    position: absolute;
+}

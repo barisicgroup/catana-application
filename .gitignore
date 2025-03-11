@@ -1,0 +1,20 @@
+*.sublime-workspace
+
+build/
+node_modules/
+declarations/
+
+npm-debug.log
+
+*.offsets
+
+# WebStorm
+.idea
+
+# VS Code
+.vscode
+
+# Mac (probably also Linux) build
+# echo > nul in some of frontend's package.json scripts outputs no (NUL) file on Windows (primary development platform)
+# but leaves "nul" file on Mac. So, we ignore it.
+frontend/nul

@@ -1,0 +1,13 @@
+TITLE thr.pdb                                                                   
+MODEL 1                                                                         
+ATOM      1 OG1  THR A  1      -1.711  -1.185   0.358  0.00  0.00           O
+ATOM      2 OXT  THR A  1       0.976  -1.681   0.131  0.00  0.00           O
+ATOM      3  O   THR A  1       2.021   0.150  -0.701  0.00  0.00           O
+ATOM      4  N   THR A  1       0.405   1.867   0.574  0.00  0.00           N
+ATOM      5 CB   THR A  1      -1.354   0.188   0.204  0.00  0.00           C
+ATOM      6 CA   THR A  1       0.066   0.449   0.729  0.00  0.00           C
+ATOM      7 CG2  THR A  1      -1.526   0.551  -1.265  0.00  0.00           C
+ATOM      8  C   THR A  1       1.122  -0.340  -0.030  0.00  0.00           C
+TER       9      THR A  1                                         
+ENDMDL                                                                          
+END                                                                             

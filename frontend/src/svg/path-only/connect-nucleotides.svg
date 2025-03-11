@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Vectornator (http://vectornator.io/) -->
+
+<svg
+   stroke-miterlimit="10"
+   style="clip-rule:evenodd;fill-rule:nonzero;stroke-linecap:round;stroke-linejoin:round"
+   version="1.1"
+   viewBox="0 0 30 30"
+   xml:space="preserve"
+   id="svg1898"
+   sodipodi:docname="connect-nucleotides.svg"
+   width="30"
+   height="30"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview1900"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false" />
+<defs
+   id="defs1885" />
+<path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="m 11.861328,9.8808594 a 2,2 0 0 0 -1.414062,0.5898436 2,2 0 0 0 0.0078,2.828125 l 6.269531,6.238281 a 2,2 0 0 0 2.828125,-0.0078 2,2 0 0 0 -0.0078,-2.828125 L 13.275391,10.462891 A 2,2 0 0 0 11.861328,9.8808594 Z"
+   id="path1887" /><path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="m 22.636719,1.7089844 a 1,1 0 0 0 -1.00586,0.9941406 l -0.06641,10.5 a 1,1 0 0 0 0.994141,1.005859 1,1 0 0 0 1.005859,-0.99414 l 0.06641,-10.4980471 a 1,1 0 0 0 -0.99414,-1.0078125 z"
+   id="path1889" /><path
+   style="color:#000000;clip-rule:nonzero;fill:#000000;fill-rule:evenodd;stroke-miterlimit:10;-inkscape-stroke:none"
+   d="M 17.318359,6.9257812 A 1,1 0 0 0 16.314453,7.9238281 1,1 0 0 0 17.3125,8.9257813 l 10.464844,0.033203 A 1,1 0 0 0 28.78125,7.9628906 1,1 0 0 0 27.785156,6.9589844 Z"
+   id="path1891" /><path
+   d="m 6.0625,0 c -3.31371,0 -6,2.68629 -6,6 0,3.31371 2.68629,6 6,6 3.31371,0 6,-2.68629 6,-6 0,-3.31371 -2.68629,-6 -6,-6 z M 5.25,2.09375 H 6.59375 L 9.625,8.9375 H 8.21875 L 7.53125,7.28125 H 4.5 L 3.8125,8.9375 H 2.4375 Z M 5.9375,3.5625 4.875,6.28125 h 2.21875 z"
+   fill="#000000"
+   fill-rule="evenodd"
+   opacity="1"
+   stroke="none"
+   id="path1893" /><path
+   d="m 24,18 c -3.3137,0 -6,2.6863 -6,6 0,3.3137 2.6863,6 6,6 3.3137,0 6,-2.6863 6,-6 0,-3.3137 -2.6863,-6 -6,-6 z m 0.4062,2.25 c 0.8399,0 1.6732,0.1882 2.5,0.5625 v 1.2187 c -0.8268,-0.4199 -1.6367,-0.6249 -2.4374,-0.625 -0.4981,0 -0.9564,0.0827 -1.3438,0.2813 -0.3874,0.1986 -0.693,0.5023 -0.9062,0.875 -0.2133,0.3727 -0.3125,0.7598 -0.3126,1.2187 1e-4,0.6967 0.2237,1.2627 0.6876,1.6876 0.4638,0.4248 1.0852,0.6562 1.8437,0.6562 0.2083,0 0.4033,-0.0267 0.5937,-0.0625 0.1905,-0.0358 0.4239,-0.1178 0.6876,-0.2187 v -1.125 h -1.125 v -1.0313 h 2.4374 V 26.5 c -0.3352,0.2344 -0.7171,0.4307 -1.1874,0.5625 -0.4704,0.1318 -0.961,0.1875 -1.4688,0.1875 -0.7194,0 -1.3844,-0.1413 -1.9688,-0.4375 -0.5843,-0.2962 -1.0478,-0.7161 -1.375,-1.25 -0.3271,-0.5339 -0.4687,-1.1237 -0.4687,-1.7813 0,-0.6673 0.1383,-1.2721 0.4687,-1.8124 0.3305,-0.5404 0.8155,-0.9506 1.4063,-1.25 0.5908,-0.2995 1.2428,-0.4688 1.9687,-0.4688 z"
+   fill="#000000"
+   fill-rule="evenodd"
+   opacity="1"
+   stroke="none"
+   id="path1895" />
+</svg>

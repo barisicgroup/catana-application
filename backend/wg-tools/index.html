@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="origin-trial" content="AvyDIV+RJoYs8fn3W6kIrBhWw0te0klraoz04mw/nPb8VTus3w5HCdy+vXqsSzomIH745CT6B5j1naHgWqt/tw8AAABJeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJmZWF0dXJlIjoiV2ViR1BVIiwiZXhwaXJ5IjoxNjYzNzE4Mzk5fQ==">
+    <title>WG-Tools</title>
+    <style>
+        .script {
+            margin-top: 1em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: min-content min-content;
+            grid-template-areas:
+                "header header"
+                "feedback editor";
+        }
+        .script, .script * {
+            font-family: monospace;
+            white-space: pre;
+        }
+        .info, .log {
+            background: lightblue;
+        }
+        .success, .passed {
+            background: darkseagreen;
+        }
+        .warning {
+            background: navajowhite;
+        }
+        .error, .failed {
+            background: pink;
+        }
+        .highlight {
+            outline: 2px solid red;
+        }
+        .header {
+            grid-area: header;
+            font-weight: bold;
+            /*border-bottom: 1px solid black;*/
+        }
+        .editor {
+            grid-area: editor;
+            display: flex;
+            flex-direction: column;
+        }
+        .editor > textarea {
+            flex-grow: 1;
+            height: auto;
+            resize: vertical;
+        }
+        .editor > button {
+            flex-grow: 0;
+        }
+        .feedback {
+            grid-area: feedback;
+            padding: 1em;
+        }
+        .invisible {
+            display: none !important;
+        }
+        .test-window {
+            background: lightgray;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 10%;
+            right: 10%;
+            bottom: 10%;
+            left: 10%;
+            overflow: hidden
+        }
+        .test-window-header {
+            display: flex;
+            flex-direction: row;
+            padding: 0.5em;
+            background: darkgray;
+        }
+        .test-window-header > * {
+            flex-grow: 1;
+        }
+        .test-window-header > button, .vis-header > button {
+            flex-grow: 0;
+            background: none;
+            cursor: pointer;
+            border: 1px solid black;
+            margin-left: 0.5em;
+        }
+        .test-window-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            /*font-weight: bold;*/
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .test-window-content > .test {
+            padding: 0.5em;
+        }
+        .test > .test {
+            font-weight: normal;
+            margin-left: 1em;
+            white-space: nowrap;
+        }
+        .test > .test:hover {
+            white-space: normal;
+            overflow-wrap: break-word;
+            outline: 2px solid black;
+        }
+
+        .vis-content {
+            margin-left: 1em;
+            border: 1px solid black;
+            padding: 0.5em;
+            background: white;
+        }
+        .vis-content > * {
+            /*width: 100%;*/
+            max-height: 50vh;
+        }
+
+        .vis-array-element {
+            /*display: inline-block;
+            text-align: center;
+            font-family: monospace;
+            width: 1em;
+            height: 0.75em;
+            padding: 0.125em;*/
+            position: relative;
+        }
+        .vis-array-element:hover {
+            background: white;
+            /*font-weight: bold;
+            cursor: default;
+            outline: 2px solid black;*/
+        }
+        .vis-array-text {
+            /*margin-left: 1em;*/
+        }
+
+        .vis-matrix-container {
+            display: flex;
+            flex-direction: row;
+        }
+        .vis-matrix > svg {
+            max-width: 100%;
+            border: 1px solid lightgray;
+            padding: 1px;
+        }
+        .vis-matrix-bin {
+            /*border: 1px solid gray;*/
+            /*stroke: gray;
+            stroke-width: 1px;*/
+        }
+        .vis-matrix-bin:hover {
+            stroke: black;
+            stroke-width: 1px;
+        }
+        .vis-matrix {
+            width: 84%;
+        }
+        .vis-matrix-controls {
+            display: flex;
+            flex-direction: column;
+            width: 14%;
+            margin-left: 1em;
+        }
+        .vis-matrix-controls > * {
+            flex-grow: 0;
+        }
+        .vis-matrix-text {
+            white-space: pre;
+        }
+        .vis-matrix-slider {
+            -webkit-appearance: slider-vertical;
+            flex-grow: 1;
+            width: 3em;
+            height: 0;
+        }
+
+        .vis-bar-chart {
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 3em;
+            position: relative;
+        }
+        .vis-bar-chart > .bar {
+            flex-grow: 1;
+            max-width: 5em;
+            text-align: center;
+            white-space: pre;
+            font-size: 0.75em;
+        }
+        .vis-bar-chart > .legend {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0.5em;
+        }
+        .vis-bar-chart > .legend > * {
+            padding: 0.5em;
+        }
+        .vis-bar-chart > .legend > * + * {
+            margin-left: 0.5em;
+        }
+
+        .renderer {
+            display: flex;
+            flex-direction: row;
+        }
+        .cameraEditor {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            margin: 1em;
+        }
+        .matrixEditor {
+            display: grid;
+            grid-template-columns: 5em 5em 5em 5em;
+        }
+        .params {
+            display: grid;
+            grid-template-columns: 5em 1fr;
+        }
+
+        /* SPINNING WHEEL - Usage: <div class="lds-dual-ring"></div> - Source: https://loading.io/css/ */
+        .loading {
+            display: inline-block;
+            box-sizing: border-box;
+            width: calc(1em - 4px);
+            height: calc(1em - 4px);
+            border-radius: 50%;
+            border: 0.125em solid;
+            border-color: black transparent black transparent;
+            animation: lds-dual-ring 1.2s linear infinite;
+            margin-left: 0.125em;
+        }
+        @keyframes lds-dual-ring {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Elements -->
+    <div id="header"></div>
+    <input id="input" type="file" accept=".wgsl" multiple>
+    <button id="recompile">Recompile</button>
+    <button id="test">Run tests</button>
+
+    <!-- External scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <!-- Generated scripts -->
+    <script src="static/wg.js"></script>
+
+    <!-- Static scripts -->
+    <script src="static/util.js"></script>
+    <script src="static/compiler.js"></script>
+    <script src="static/vis.js"></script>
+    <script src="static/seq.js"></script>
+    <script src="static/test.js"></script>
+
+</body>
+</html>

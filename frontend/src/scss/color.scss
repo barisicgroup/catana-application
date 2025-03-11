@@ -1,0 +1,49 @@
+.ColorSequence {
+  overflow-x: visible;
+  display: flex;
+  flex-direction: row;
+  &.Wide {
+    flex-wrap: wrap;
+    & > .ColorBar {
+      min-width: 0.5em;
+    }
+  }
+  & > .ColorBar {
+    display: inline-block;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 1px;
+    height: 100%;
+  }
+  &.clickable:hover {
+    cursor: auto;
+  }
+}
+
+.ColorScaleSelectOption {
+  min-height: 2em;
+  display: flex;
+  flex-direction: row;
+  //flex-wrap: nowrap;
+  //overflow: hidden;
+  & > .ColorSequence {
+    flex-grow: 0;
+    width: 3em;
+  }
+  & > .Text {
+    flex-grow: 1;
+    margin-left: 0.25em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.CustomColorEditor {
+  & > .Table {
+    gap: 0;
+    & > * {
+      height: 2em;
+    }
+  }
+}

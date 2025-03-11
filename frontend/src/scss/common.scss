@@ -1,0 +1,51 @@
+// Colors --------------------------------------------------------------------------------------------------------------
+$color-catana-blue: #2cabe2;
+$color-highlight: yellow;
+$color-bad: #ff6666;
+$color-warn: #ffbb66;
+$color-good: #66bb66;
+$color-background-dark: change-color($color-catana-blue, $saturation: 20%, $lightness: 20%);
+$color-background-middle: change-color($color-catana-blue, $saturation: 20%, $lightness: 30%);
+$color-background-light: white;
+$color-foreground-dark: $color-background-dark;
+$color-foreground-middle: change-color($color-catana-blue, $saturation: 20%, $lightness: 50%);
+$color-foreground-light: $color-background-light;
+$color-border: $color-background-middle;
+$color-shadow: change-color(black, $alpha: 0.75);
+
+// Fonts ---------------------------------------------------------------------------------------------------------------
+$font-default: "Segoe UI", Candara, "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref",
+  sans-serif;
+$font-mono: monospace, monospace; // Intentionally twice (https://github.com/necolas/normalize.css/issues/519#issuecomment-197131966)
+
+// Effects -------------------------------------------------------------------------------------------------------------
+$shadow: 0 0 10px $color-shadow;
+
+// Mixins --------------------------------------------------------------------------------------------------------------
+@mixin Mini {
+  background: transparent;
+  &.Icon,
+  & > .Icon {
+    font-size: 0.75em;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  &.Button {
+    display: table;
+    &:hover {
+      background: transparent;
+      border-color: transparent;
+      & > .Icon {
+        color: $color-catana-blue;
+      }
+    }
+    &:active {
+      box-shadow: none;
+    }
+    & > .Icon {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}

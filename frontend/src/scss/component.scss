@@ -1,0 +1,101 @@
+@import "common";
+
+.ComponentsTreeView {
+  user-select: none;
+  & .TreeViewNode {
+    border-left: 0.15em solid transparent;
+    &.invisible {
+      display: initial !important;
+      .Text,
+      .Icon {
+        color: $color-foreground-middle !important;
+      }
+    }
+    &.highlighted {
+      outline: none;
+      border-left: 0.15em solid $color-highlight;
+    }
+    & > .CollapsiblePanelBar {
+      & > .CollapsiblePanelBarElement {
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.ComponentsTreeView[data-header-text]::before,
+.ComponentOptionsPanel[data-header-text]::before {
+  content: attr(data-header-text);
+  text-align: center;
+  background-color: adjust-color($color-background-dark, $lightness: 5%);
+}
+
+.ComponentOptionsPanel {
+  width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+  & > .ComponentOptionsPanelName {
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+  }
+  & > .ComponentOptionsPanelTabsMenu {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 0;
+    & > .TabsMenuContent {
+      & > * {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.ComponentSequencePanel {
+  overflow-y: hidden;
+  & > * {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  & > .Text {
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow-y: hidden;
+    margin: 0 0.25em 0.25em 0.25em;
+  }
+}
+
+.ComponentDetailsPanel {
+  & > * {
+    flex-grow: 0;
+  }
+  & > .TextArea {
+    flex-grow: 1;
+  }
+}
+
+.Panel.RepresentationBar {
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  & > .Icon {
+    margin: auto;
+  }
+}
+
+.RepresentationColoringPanel {
+  & > .RepresentationColoringBar {
+    flex-grow: 1;
+    & > * {
+      flex-grow: 1;
+      width: 0;
+    }
+  }
+  & > .RepresentationColoringContent {
+    background: $color-background-middle;
+  }
+}

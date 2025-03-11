@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "target": "es6",
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "sourceMap": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "lib": [
+            "es6",
+            "dom",
+            "es2016"
+        ],
+        "outDir": "build/js/src",
+        "allowJs": false,
+        "moduleResolution": "node",
+        "typeRoots": [
+            "./types/",
+            "./node_modules/@types",
+            "../node_modules/@types",
+            "./node_modules/@webgpu/types"
+        ]
+    },
+    "include": [
+        "src/**/*",
+        "lib/**/*"
+    ]
+}
